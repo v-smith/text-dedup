@@ -112,6 +112,15 @@ python -m text_dedup.minhash \
   --output "output/minhash/oscar_gl_dedup" \
   --column "text" \
   --batch_size 10000
+  
+python -m text_dedup.minhash \
+  --path "../deduplicate-text-datasets/data/SUBJECT_ID_to_NOTES_1b.csv" \
+  --name "mimic" \
+  --cache_dir "cache" \
+  --output "output/minhash" \
+  --column "TEXT" \
+  --batch_size 10000
+
 
 # output
 INFO     Loading                         : 2.62 seconds

@@ -194,17 +194,17 @@ if __name__ == "__main__":  # pragma: no cover
                 ds = load_from_disk(args.path)
             else:
                 ds = load_dataset(
-                    path=args.path,
-                    name=args.name,
-                    data_dir=args.data_dir,
-                    data_files=args.data_files,
-                    split=args.split,
-                    revision=args.revision,
+                    path="csv",
+                    #name="mimic",
+                    #data_dir="../deduplicate-text-datasets/data",
+                    data_files=args.path,
+                    #split=None,
+                    #revision=args.revision,
                     cache_dir=args.cache_dir,
                     num_proc=os.cpu_count(),
-                    token=args.use_auth_token,
+                    #token=args.use_auth_token,
                 )
-
+        ds = ds["train"]
         LEN_DATASET = len(ds)
         # for minhash, we need to make a lot of hashes(=num_perms).
         # In many previous implementations, this is achieved through a method described in
@@ -216,6 +216,8 @@ if __name__ == "__main__":  # pragma: no cover
             RNG.randint(1, MODULO_PRIME, size=(args.num_perm,), dtype=DTYPE),  # a is a multiplier so should not be 0
             RNG.randint(0, MODULO_PRIME, size=(args.num_perm,), dtype=DTYPE),  # b
         )
+
+        print(ds.shape)
 
         with timer("MinHashing"):
             embedded = ds.map(
@@ -232,12 +234,15 @@ if __name__ == "__main__":  # pragma: no cover
                     "modulo_prime": MODULO_PRIME,
                 },
                 input_columns=[args.column],
-                remove_columns=ds.column_names,
+                remove_columns=ds.column_names, #ds.column_names["train"], ["Unnamed: 0", "SUBJECT_ID"]
                 num_proc=os.cpu_count(),
                 with_indices=True,
                 desc="Fingerprinting...",
             )
             LEN_EMBEDDED = len(embedded)
+            print(LEN_EMBEDDED)
+            print(embedded.shape)
+            print(type(embedded))
             NUM_SHARDS = np.ceil(LEN_EMBEDDED / args.batch_size).astype(int)
 
         with timer("Clustering"):

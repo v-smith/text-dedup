@@ -129,6 +129,7 @@ python -m text_dedup.minhash \
   --column "TEXT" \
   --batch_size 10000
 
+###
 
 # output
 INFO     Loading                         : 2.62 seconds

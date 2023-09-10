@@ -120,6 +120,14 @@ python -m text_dedup.minhash \
   --output "output/minhash" \
   --column "TEXT" \
   --batch_size 10000
+  
+python -m text_dedup.minhash \
+  --path "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split1.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split2.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split3.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split4.csv"\
+  --name "mimic" \
+  --cache_dir "cache" \
+  --output "output/minhash" \
+  --column "TEXT" \
+  --batch_size 10000
 
 
 # output

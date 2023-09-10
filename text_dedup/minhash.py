@@ -204,7 +204,7 @@ if __name__ == "__main__":  # pragma: no cover
                     num_proc=os.cpu_count(),
                     #token=args.use_auth_token,
                 )
-        ds = ds["train"]
+        ds = ds["train"] #vicky
         LEN_DATASET = len(ds)
         # for minhash, we need to make a lot of hashes(=num_perms).
         # In many previous implementations, this is achieved through a method described in

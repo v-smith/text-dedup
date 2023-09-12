@@ -302,16 +302,20 @@ if __name__ == "__main__":
 
     with timer("Total"):
         with timer("Loading"):
-            ds: Dataset = load_dataset(  # type: ignore
-                path=args.path,
-                name=args.name,
-                data_dir=args.data_dir,
-                data_files=args.data_files,
-                split=args.split,
-                revision=args.revision,
+            ds: Dataset = load_dataset(
+                # type: ignore
+                path="csv",
+                #path=args.path,
+                #name=args.name,
+                #data_dir=args.data_dir,
+                data_files=args.path,
+                #split=args.split,
+                #revision=args.revision,
                 cache_dir=args.cache_dir,
-                token=args.use_auth_token,
+                #token=args.use_auth_token,
             )
+
+        ds = ds["train"]
 
         with timer("Preprocessing"):
             offsets: List[slice] = []

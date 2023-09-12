@@ -292,10 +292,13 @@ if __name__ == "__main__":  # pragma: no cover
 
         with timer("Saving"):
             final_data = final_data.remove_columns(["__cluster__"])
+            print(type(final_data))
             final_data.save_to_disk(args.output)
             if args.debug:
                 with open(os.path.join(args.output, "uf.pkl"), "wb") as f:
                     pickle.dump(uf, f, protocol=pickle.HIGHEST_PROTOCOL)
+                #with open(os.path.join(args.output, "uf.csv"), "wb") as f:
+
 
         with timer("Cleaning"):
             if args.clean_cache:

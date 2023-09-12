@@ -86,6 +86,15 @@ python -m text_dedup.suffix_array \
     --output "output/suffix_array/oscar_gl_dedup" \
     --column "text" \
     --google_repo_path "/Users/chenghao/Downloads/Projects/text-dedup/deduplicate-text-datasets"
+    
+python -m text_dedup.suffix_array \
+  --path "../deduplicate-text-datasets/data/SUBJECT_ID_to_NOTES_1a_2000.csv" \
+  --name "mimic" \
+  --cache_dir "cache" \
+  --output "output/suffix_array" \
+  --column "TEXT" \
+  --google_repo_path "../deduplicate-text-datasets"
+
 
 # output
 INFO     Loading                       : 2.75 seconds
@@ -114,7 +123,7 @@ python -m text_dedup.minhash \
   --batch_size 10000
   
 python -m text_dedup.minhash \
-  --path "../deduplicate-text-datasets/data/SUBJECT_ID_to_NOTES_1b.csv" \
+  --path "../deduplicate-text-datasets/data/SUBJECT_ID_to_NOTES_1a_2000.csv" \
   --name "mimic" \
   --cache_dir "cache" \
   --output "output/minhash" \
@@ -122,10 +131,18 @@ python -m text_dedup.minhash \
   --batch_size 10000
   
 python -m text_dedup.minhash \
-  --path "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split1.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split2.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split3.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split4.csv"\
+  --path "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1a_split1.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split2.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split3.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/SUBJECT_ID_to_NOTES_1b_split4.csv"\
   --name "mimic" \
   --cache_dir "cache" \
   --output "output/minhash" \
+  --column "TEXT" \
+  --batch_size 10000
+  
+python -m text_dedup.minhash \
+  --path "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/10fold/SUBJECT_ID_to_NOTES_1b_split1.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/10fold/SUBJECT_ID_to_NOTES_1b_split2.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/10fold/SUBJECT_ID_to_NOTES_1b_split3.csv" "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/10fold/SUBJECT_ID_to_NOTES_1b_split4.csv"\
+  --name "mimic" \
+  --cache_dir "cache" \
+  --output "../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/minhash/10fold/" \
   --column "TEXT" \
   --batch_size 10000
 

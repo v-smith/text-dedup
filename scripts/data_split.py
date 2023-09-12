@@ -8,7 +8,7 @@ import typer
 def main(
         input_data_file_path: Path = typer.Option(default="../mimic/files/clinical-bert-mimic-notes/setup_outputs/SUBJECT_ID_to_NOTES_1b.csv",
                                                   help="Path to the input model"),
-        output_data_file_name: Path = typer.Option(default="../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/10fold/SUBJECT_ID_to_NOTES_1b",
+        output_data_file_name: Path = typer.Option(default="../mimic/files/clinical-bert-mimic-notes/setup_outputs/split/10fold/1b/SUBJECT_ID_to_NOTES_1b",
                                                    help="Path to the input model"),
         splits: int = typer.Option(default=10, help="Number of Splits of Data")
 ):

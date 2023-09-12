@@ -15,7 +15,7 @@ def main(
     df = pd.read_csv(input_data_file_path, index_col=False)
     print(f"Len of full dataset is: {len(df.index)}")
     print(f"Len of {splits} splits should be: {len(df.index)/splits}")
-    shuffled = df.sample(frac=1)
+    shuffled = df.sample(frac=1, random_state=0)
     result = np.array_split(shuffled, indices_or_sections=splits)
 
     counter = 0
